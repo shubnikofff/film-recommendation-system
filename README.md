@@ -38,8 +38,7 @@ Task description says that the films must be returned in the following order:
 To meet first 2 requirements temporary tables `customer_rented_categories` and `film_rental_count` created using CTEs. Joining this tables allow to apply required sorting.
 
 Another requirement is films that have already been rented by the target customer must be omitted from the list of recommendations.
-To meet this requirement `NOT EXISTS` is used. Another option is to create temporary table `customer_rented_films` inside `WITH`, join it, and filter result set using `IS NULL`, 
-but `explain analyze` shows a slight better performance for the first option with `NOT EXISTS`.
+To meet this requirement `NOT EXISTS` is used. It consumes the result set of customer rented films subquery which allows to filter the final result set.
 
 ### Tests
 
